@@ -7,7 +7,8 @@ import { app } from "./app.js";
 import { findQuote, quotes } from "./quotes.js";
 
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: process.env.WEB_ORIGIN?.split(",") ?? "*" } });
+const allowedOrigins = process.env.WEB_ORIGIN?.split(",") ?? ["http://localhost:3000"];
+const io = new Server(server, { cors: { origin: allowedOrigins } });
 const graphql = new ApolloServer({
   typeDefs: `type Quote { symbol: String!, price: Float!, change: Float! } type Query { quotes: [Quote!]!, quote(symbol: String!): Quote }`,
   resolvers: { Query: { quotes: () => quotes, quote: (_: unknown, { symbol }: { symbol: string }) => findQuote(symbol) } }
