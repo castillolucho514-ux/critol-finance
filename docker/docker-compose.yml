@@ -8,8 +8,9 @@ services:
     build: { context: .., dockerfile: docker/backend.Dockerfile }
     ports: ["4000:4000"]
     environment:
-      DATABASE_URL: "******postgres:5432/critol"
+      DATABASE_URL: "postgresql://critol@postgres:5432/critol"
       REDIS_URL: "redis://redis:6379"
+      JWT_SECRET: "replace-in-real-environments"
       WEB_ORIGIN: "http://localhost:3000"
     depends_on: [postgres, redis]
   postgres:
