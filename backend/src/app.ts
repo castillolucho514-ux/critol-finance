@@ -4,7 +4,10 @@ import rateLimit from "express-rate-limit";
 import jwt from "jsonwebtoken";
 import { findQuote, quotes } from "./quotes.js";
 
-const JWT_SECRET = process.env.JWT_SECRET ?? "development-only-secret";
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET must be configured");
+}
 const allowedOrigins = process.env.WEB_ORIGIN?.split(",") ?? ["http://localhost:3000"];
 export const app = express();
 app.use(cors({ origin: allowedOrigins }));

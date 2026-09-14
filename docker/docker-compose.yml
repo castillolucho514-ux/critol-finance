@@ -11,6 +11,7 @@ services:
       DATABASE_URL: "******postgres:5432/critol"
       REDIS_URL: "redis://redis:6379"
       WEB_ORIGIN: "http://localhost:3000"
+      JWT_SECRET: "${JWT_SECRET:?JWT_SECRET must be set}"
     depends_on: [postgres, redis]
   postgres:
     build: { context: .., dockerfile: docker/postgres.Dockerfile }
