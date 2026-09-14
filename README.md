@@ -12,6 +12,7 @@ Plataforma abierta de finanzas bursátiles para consultar cotizaciones, analizar
 npm install
 npm run dev       # http://localhost:3000
 npm run dev:api   # http://localhost:4000
+cp .env.example .env  # set real secrets before starting Docker
 docker compose -f docker/docker-compose.yml up --build
 ```
 
@@ -35,6 +36,7 @@ An open stock-market finance platform for quotes, market analysis, and portfolio
 npm install
 npm run dev       # http://localhost:3000
 npm run dev:api   # http://localhost:4000
+cp .env.example .env  # set real secrets before starting Docker
 docker compose -f docker/docker-compose.yml up --build
 ```
 
