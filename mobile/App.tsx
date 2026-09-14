@@ -8,6 +8,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#020617", justifyContent: "center", padding: 24 },
   title: { color: "#34d399", fontSize: 28, fontWeight: "700", marginBottom: 24 },
-  quote: { color: "#fff", fontSize: 20, marginBottom: 12 }
-  ,status: { color: "#cbd5e1" }
+  quote: { color: "#fff", fontSize: 20, marginBottom: 12 },
+  status: { color: "#cbd5e1" }
 });
