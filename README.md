@@ -57,13 +57,4 @@ Future revenue integrations can support subscriptions, advertising, Premium API 
 
 ## License / Licencia
 
-Copyright 2026 castillolucho514-ux. All Rights Reserved.
-
-This is proprietary, closed-source software. No use, copying, modification,
-or distribution is permitted without prior written authorization from the
-copyright owner. See the [LICENSE](LICENSE) file for details.
-
-Este es un software propietario y de código cerrado. No se permite su uso,
-copia, modificación ni distribución sin autorización previa por escrito del
-titular del copyright. Consulta el archivo [LICENSE](LICENSE) para más
-detalles.
+Copyright 2026 castillolucho514-ux. Licensed under [Apache License 2.0](LICENSE).

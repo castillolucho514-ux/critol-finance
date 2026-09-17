@@ -2,7 +2,7 @@
   "name": "critol-finance",
   "version": "0.1.0",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "workspaces": ["frontend", "backend", "mobile"],
   "scripts": {
     "dev": "npm run dev --workspace=frontend",

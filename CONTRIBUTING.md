@@ -12,4 +12,4 @@ npm run dev
 npm run dev:api
 ```
 
-Use environment variables for credentials; never commit `.env` files. This project is proprietary and closed-source; contributions are accepted only under the terms authorized by the copyright owner. See [LICENSE](LICENSE).
+Use environment variables for credentials; never commit `.env` files. This project is licensed under Apache-2.0.
