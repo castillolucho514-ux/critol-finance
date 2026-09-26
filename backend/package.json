@@ -18,7 +18,8 @@
     "express-rate-limit": "^8.7.0",
     "graphql": "^16.11.0",
     "jsonwebtoken": "^9.0.2",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "stripe": "^22.6.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",

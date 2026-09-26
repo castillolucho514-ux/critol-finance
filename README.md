@@ -17,6 +17,15 @@ docker compose -f docker/docker-compose.yml up --build
 
 La API ofrece `GET /health`, `GET /api/quotes`, `GET /api/quotes/:symbol`, autenticación JWT de demostración en `POST /api/auth/token` y GraphQL en `/graphql`. Configure secretos reales mediante variables de entorno (`JWT_SECRET`, `DATABASE_URL`, `REDIS_URL`); nunca los confirme en Git.
 
+### Suscripciones (Stripe)
+
+El backend incluye soporte de pagos con Stripe para el plan Premium:
+
+- `POST /api/billing/checkout` (requiere JWT): crea una sesión de Stripe Checkout y devuelve la URL de pago.
+- `POST /api/billing/webhook`: recibe eventos de Stripe (`checkout.session.completed`, `customer.subscription.deleted`) y actualiza el plan del usuario.
+
+Configure las variables de entorno `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_ID` y `FRONTEND_URL` para habilitar la facturación; sin ellas, los endpoints de billing responden con error de configuración.
+
 ### Planes
 
 | Gratuito | Premium |
@@ -39,6 +48,15 @@ docker compose -f docker/docker-compose.yml up --build
 ```
 
 The API provides `GET /health`, `GET /api/quotes`, `GET /api/quotes/:symbol`, demo JWT authentication at `POST /api/auth/token`, and GraphQL at `/graphql`. Set real secrets using environment variables (`JWT_SECRET`, `DATABASE_URL`, `REDIS_URL`); never commit them.
+
+### Subscriptions (Stripe)
+
+The backend includes Stripe billing support for the Premium plan:
+
+- `POST /api/billing/checkout` (requires JWT): creates a Stripe Checkout session and returns the payment URL.
+- `POST /api/billing/webhook`: receives Stripe events (`checkout.session.completed`, `customer.subscription.deleted`) and updates the user's plan.
+
+Set the `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_ID`, and `FRONTEND_URL` environment variables to enable billing; without them, the billing endpoints return a configuration error.
 
 ### Plans
 

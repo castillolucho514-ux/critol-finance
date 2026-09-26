@@ -12,6 +12,10 @@ services:
       REDIS_URL: "redis://redis:6379"
       JWT_SECRET: "replace-in-real-environments"
       WEB_ORIGIN: "http://localhost:3000"
+      FRONTEND_URL: "http://localhost:3000"
+      STRIPE_SECRET_KEY: "replace-in-real-environments"
+      STRIPE_WEBHOOK_SECRET: "replace-in-real-environments"
+      STRIPE_PRICE_ID: "replace-in-real-environments"
     depends_on: [postgres, redis]
   postgres:
     build: { context: .., dockerfile: docker/postgres.Dockerfile }
