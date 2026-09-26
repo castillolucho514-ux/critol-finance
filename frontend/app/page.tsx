@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useLocale } from "./providers";
 
 const series = {
   es: [{ day: "Lun", value: 182 }, { day: "Mar", value: 185 }, { day: "Mié", value: 183 }, { day: "Jue", value: 188 }, { day: "Vie", value: 190 }],
@@ -13,12 +13,9 @@ const copy = {
 };
 
 export default function Dashboard() {
-  const [locale, setLocale] = useState<"es" | "en">("es");
+  const { locale, setLocale } = useLocale();
   const t = copy[locale];
   const data = series[locale];
-  useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
   return <main className="mx-auto min-h-screen max-w-6xl p-6">
     <header className="flex items-center justify-between border-b border-slate-800 pb-6">
       <strong className="text-xl text-emerald-400">Critol Finance</strong>
