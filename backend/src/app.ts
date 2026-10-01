@@ -21,6 +21,7 @@ app.get("/api/quotes/:symbol", (request, response) => {
   return quote ? response.json(quote) : response.status(404).json({ error: "Quote not found" });
 });
 app.get("/api/users/me", authLimiter, (request, response) => {
+  if (!JWT_SECRET) return response.status(500).json({ error: "Server authentication is not configured" });
   const authorization = request.header("authorization");
   if (!authorization?.startsWith("Bearer ")) return response.status(401).json({ error: "Authentication required" });
   try {
@@ -31,6 +32,7 @@ app.get("/api/users/me", authLimiter, (request, response) => {
 });
 app.get("/api/alerts", (_request, response) => response.json([]));
 app.post("/api/auth/token", authLimiter, (request, response) => {
+  if (!JWT_SECRET) return response.status(500).json({ error: "Server authentication is not configured" });
   const email = typeof request.body.email === "string" ? request.body.email : "";
   if (!email) return response.status(400).json({ error: "Email is required" });
   return response.json({ token: jwt.sign({ sub: email, plan: "free" }, JWT_SECRET, { expiresIn: "1h" }) });

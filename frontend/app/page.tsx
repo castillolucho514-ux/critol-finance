@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useLocale } from "./providers";
 
 const copy = {
   es: { title: "Tu mercado, con claridad", subtitle: "Cotizaciones y análisis para tomar mejores decisiones.", portfolio: "Cartera", quotes: "Cotizaciones", analysis: "Análisis", settings: "Configuración", marketsOpen: "Mercados abiertos", days: ["Lun", "Mar", "Mié", "Jue", "Vie"] },
@@ -9,12 +9,9 @@ const copy = {
 };
 
 export default function Dashboard() {
-  const [locale, setLocale] = useState<"es" | "en">("es");
+  const { locale, setLocale } = useLocale();
   const t = copy[locale];
   const data = t.days.map((day, index) => ({ day, value: [182, 185, 183, 188, 190][index] }));
-  useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
   return <main className="mx-auto min-h-screen max-w-6xl p-6">
     <header className="flex items-center justify-between border-b border-slate-800 pb-6">
       <strong className="text-xl text-emerald-400">Critol Finance</strong>
