@@ -21,9 +21,15 @@ export function createApp(deps: Deps) {
   const app = express();
   app.disable("x-powered-by");
   app.use(express.json({ limit: "100kb" }));
+  const allowedOrigins = (process.env.CORS_ORIGIN ?? "*").split(",").map((origin) => origin.trim()).filter(Boolean);
   app.use((req, res, next) => {
     res.setHeader("X-Content-Type-Options", "nosniff");
-    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_ORIGIN ?? "*");
+    if (allowedOrigins.includes("*")) res.setHeader("Access-Control-Allow-Origin", "*");
+    else {
+      res.vary("Origin");
+      if (req.headers.origin && allowedOrigins.includes(req.headers.origin))
+        res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+    }
     res.setHeader("Access-Control-Allow-Headers", "content-type, authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,OPTIONS");
     if (req.method === "OPTIONS") return void res.sendStatus(204);

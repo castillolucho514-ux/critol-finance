@@ -18,6 +18,7 @@ services:
     environment:
       JWT_SECRET: ${JWT_SECRET:?set in .env}
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
       ADMIN_EMAILS: ${ADMIN_EMAILS:-}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
