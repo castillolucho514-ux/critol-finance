@@ -24,7 +24,7 @@ cd frontend && npm ci && npm run dev
 
 The mobile apps package the frontend for Android and iOS; user accounts, market data, and chat still require the backend and PostgreSQL to be hosted online. Deploy the backend and database first, then deploy the frontend over HTTPS. Set `NEXT_PUBLIC_API_URL` to the public HTTPS API URL when building the mobile frontend, and configure the backend's comma-separated `CORS_ORIGIN` with the deployed web origin and the Capacitor origins `https://localhost,capacitor://localhost`. Keep `JWT_SECRET`, database credentials, and any AI provider key on the backend only.
 
-The app includes a **Licencias** page with the project license, complete available license texts for frontend and backend production npm dependencies, and notices for the native Android/iOS dependencies. After changing either package lockfile or native dependency declarations, install the backend and frontend dependencies and regenerate the reports:
+The app includes a **Licencias** page with the project license, complete available license texts for frontend and backend production npm dependencies, and notices for the native Android/iOS dependencies. Regenerating the npm license reports requires Node.js 24 or later. After changing either package lockfile or native dependency declarations, install the backend and frontend dependencies and regenerate the reports:
 
 ```sh
 cd backend && npm ci
