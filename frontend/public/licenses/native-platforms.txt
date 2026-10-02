@@ -1,0 +1,33 @@
+Native platform third-party notices
+
+These notices describe native dependencies in the generated Capacitor projects.
+The npm reports in this directory include the JavaScript/TypeScript Capacitor
+packages and their full available license texts.
+
+Android
+
+AndroidX dependencies used by the app and Capacitor Android project include
+AppCompat 1.7.1, CoordinatorLayout 1.3.0, Core SplashScreen 1.2.0, Activity
+1.11.0, Core 1.17.0, Fragment 1.8.9, and WebKit 1.14.0. AndroidX components
+are licensed under Apache License 2.0.
+
+Copyright 2012 The Android Open Source Project
+
+The Capacitor Android project also uses Apache Cordova Android Framework 14.0.1,
+licensed under Apache License 2.0.
+
+Apache Cordova
+Copyright 2015-2020 The Apache Software Foundation
+
+iOS
+
+Capacitor Swift Package Manager 8.5.2 includes the Capacitor and Cordova
+frameworks. Capacitor is licensed under MIT; Cordova is licensed under Apache
+License 2.0. The Capacitor MIT notice and Apache License 2.0 text are provided
+separately in these notices.
+
+Apache Cordova
+Copyright 2015-2020 The Apache Software Foundation
+
+The native dependency versions and licenses should be reviewed and this notice
+updated whenever the Android Gradle or iOS Swift Package dependencies change.
