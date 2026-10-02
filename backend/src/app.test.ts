@@ -15,14 +15,50 @@ async function boot() {
   const server = app.listen(0);
   const base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
   const call = async (method: string, path: string, body?: unknown, token?: string) => {
-    const r = await fetch(base + path, { method, headers: { "content-type": "application/json", ...(token ? { authorization: `Bearer ${token}` } : {}) }, body: body ? JSON.stringify(body) : undefined });
+    const r = await fetch(base + path, {
+      method,
+      headers: {
+        "content-type": "application/json",
+        ...(token ? { authorization: "Bearer " + token } : {}),
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
     return { status: r.status, json: (await r.json()) as any };
   };
   return { server, call };
 }
 
 test("requires JWT secret", () => {
-  assert.throws(() => createApp({ store: new MemoryStore(), ai: { reply: async () => "" }, coinbase: { spotPrice: async () => ({} as any) }, jwtSecret: "" }));
+  assert.throws(() => createApp({ store: new MemoryStore(), ai: { reply: async () => "" }, coinbase: { spotPrice: async () => ({} as any) }, jwtSecret: "  " }));
+});
+
+test("normalizes market pair casing", async () => {
+  const store = new MemoryStore();
+  const app = createApp({
+    store,
+    ai: { reply: async () => "hello" },
+    coinbase: { spotPrice: async (pair) => ({ pair, amount: "1", currency: "USD" }) },
+    jwtSecret: "test-secret",
+  });
+  const server = app.listen(0);
+  try {
+    const port = (server.address() as AddressInfo).port;
+    const base = `http://127.0.0.1:${port}`;
+    const reg = await fetch(base + "/auth/register", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: "c@x.com", password: "password1" }),
+    });
+    const user = await store.findUserByEmail("c@x.com");
+    assert.ok(user);
+    await store.setPlan(user!.id, "PRO");
+    const token = (await reg.json()).token;
+    const r = await fetch(base + "/market/btc-usd", {
+      headers: { authorization: "Bearer " + token },
+    });
+    assert.equal(r.status, 200);
+    assert.deepEqual(await r.json(), { pair: "BTC-USD", amount: "1", currency: "USD" });
+  } finally { server.close(); }
 });
 
 test("auth, chat, plans, admin", async () => {

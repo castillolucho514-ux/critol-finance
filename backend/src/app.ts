@@ -15,8 +15,9 @@ const planSchema = z.object({ plan: z.enum(["FREE", "PRO", "PREMIUM"]) });
 const chatSchema = z.object({ message: z.string().min(1).max(4000) });
 
 export function createApp(deps: Deps) {
-  if (!deps.jwtSecret) throw new Error("JWT_SECRET is required");
-  const { store, ai, coinbase, jwtSecret } = deps;
+  const jwtSecret = (deps.jwtSecret ?? "").trim();
+  if (!jwtSecret) throw new Error("JWT_SECRET is required");
+  const { store, ai, coinbase } = deps;
   const admins = (deps.adminEmails ?? []).map((e) => e.toLowerCase());
   const app = express();
   app.disable("x-powered-by");
