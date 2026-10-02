@@ -9,6 +9,9 @@
     "mobile:sync": "cap sync",
     "mobile:open:android": "cap open android",
     "mobile:open:ios": "cap open ios",
+    "licenses:frontend": "license-checker --production --plainVertical --excludePrivatePackages --out public/licenses/frontend.txt",
+    "licenses:backend": "cd ../backend && ../frontend/node_modules/.bin/license-checker --production --plainVertical --excludePrivatePackages --out ../frontend/public/licenses/backend.txt",
+    "licenses": "npm run licenses:frontend && npm run licenses:backend",
     "start": "next start"
   },
   "dependencies": {
@@ -21,7 +24,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "8.4.3",
-    "@lizenz/checker": "^0.0.2",
+    "@lizenz/checker": "0.0.2",
     "@types/node": "^20.17.0",
     "@types/react": "^19.0.0",
     "typescript": "^5.7.2"

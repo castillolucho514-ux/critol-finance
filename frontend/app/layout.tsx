@@ -12,6 +12,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Link href="/chat">Chat</Link>
           <Link href="/subscription">Suscripción</Link>
           <Link href="/settings">Settings</Link>
+          <Link href="/licenses">Licencias</Link>
         </nav>
         {children}
       </body>
