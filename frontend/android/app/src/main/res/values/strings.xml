@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CristoFinance</string>
+    <string name="title_activity_main">CristoFinance</string>
+    <string name="package_name">com.critol.finance</string>
+    <string name="custom_url_scheme">com.critol.finance</string>
+</resources>
