@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "8.4.3",
+    "@lizenz/checker": "^0.0.2",
     "@types/node": "^20.17.0",
     "@types/react": "^19.0.0",
     "typescript": "^5.7.2"
