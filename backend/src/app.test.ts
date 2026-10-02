@@ -25,6 +25,33 @@ test("requires JWT secret", () => {
   assert.throws(() => createApp({ store: new MemoryStore(), ai: { reply: async () => "" }, coinbase: { spotPrice: async () => ({} as any) }, jwtSecret: "" }));
 });
 
+test("allows configured web and Capacitor origins only", async () => {
+  const original = process.env.CORS_ORIGIN;
+  process.env.CORS_ORIGIN = "https://app.example.com,https://localhost,capacitor://localhost";
+  const app = createApp({
+    store: new MemoryStore(),
+    ai: { reply: async () => "" },
+    coinbase: { spotPrice: async () => ({} as any) },
+    jwtSecret: "test-secret",
+  });
+  const server = app.listen(0);
+  const base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
+  const preflight = (origin: string) => fetch(base + "/health", { method: "OPTIONS", headers: { origin } });
+  try {
+    const mobile = await preflight("capacitor://localhost");
+    assert.equal(mobile.status, 204);
+    assert.equal(mobile.headers.get("access-control-allow-origin"), "capacitor://localhost");
+    const web = await preflight("https://app.example.com");
+    assert.equal(web.headers.get("access-control-allow-origin"), "https://app.example.com");
+    const untrusted = await preflight("https://untrusted.example");
+    assert.equal(untrusted.headers.get("access-control-allow-origin"), null);
+  } finally {
+    server.close();
+    if (original === undefined) delete process.env.CORS_ORIGIN;
+    else process.env.CORS_ORIGIN = original;
+  }
+});
+
 test("auth, chat, plans, admin", async () => {
   const { server, call } = await boot();
   try {
