@@ -1,5 +1,13 @@
 # Critol Finance
 
+**⚠️ PROPRIETARY PROJECT - EXCLUSIVE PROPERTY OF castillolucho514-ux**
+
+**All rights reserved. Commercial use. Not for public distribution.**
+
+See [OWNERSHIP.md](OWNERSHIP.md) for full rights declaration and copyright notice.
+
+---
+
 [English](#english) · [Español](#español)
 
 ## Español
@@ -57,4 +65,10 @@ Future revenue integrations can support subscriptions, advertising, Premium API 
 
 ## License / Licencia
 
-Copyright 2026 castillolucho514-ux. Licensed under [Apache License 2.0](LICENSE).
+**PROPRIETARY LICENSE - ALL RIGHTS RESERVED**
+
+Copyright 2024 castillolucho514-ux. All rights reserved.
+
+This project is proprietary and confidential. Licensed under [Apache License 2.0](LICENSE) with exclusive ownership and commercial rights retained by castillolucho514-ux.
+
+**See [OWNERSHIP.md](OWNERSHIP.md) for complete copyright and rights declaration.**
