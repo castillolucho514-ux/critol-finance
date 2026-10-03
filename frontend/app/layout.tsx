@@ -1,20 +1,12 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
+import "./globals.css";
+import { Providers } from "./providers";
 
-export const metadata = { title: "CristoFinance" };
+export const metadata = {
+  title: "Critol Finance",
+  description: "Bilingual market intelligence for every investor",
+  manifest: "/manifest.webmanifest"
+};
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="es">
-      <body style={{ fontFamily: "system-ui", maxWidth: 720, margin: "0 auto", padding: 16 }}>
-        <nav style={{ display: "flex", gap: 12 }}>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/chat">Chat</Link>
-          <Link href="/subscription">Suscripción</Link>
-          <Link href="/settings">Settings</Link>
-        </nav>
-        {children}
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="es"><body><Providers>{children}</Providers></body></html>;
 }

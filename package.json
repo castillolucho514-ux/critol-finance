@@ -1,0 +1,13 @@
+{
+  "name": "critol-finance",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "workspaces": ["frontend", "backend", "mobile"],
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend",
+    "dev:api": "npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "test": "npm run test --workspaces --if-present"
+  }
+}
