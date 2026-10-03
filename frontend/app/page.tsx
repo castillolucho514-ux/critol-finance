@@ -3,19 +3,15 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useLocale } from "./providers";
 
-const series = {
-  es: [{ day: "Lun", value: 182 }, { day: "Mar", value: 185 }, { day: "Mié", value: 183 }, { day: "Jue", value: 188 }, { day: "Vie", value: 190 }],
-  en: [{ day: "Mon", value: 182 }, { day: "Tue", value: 185 }, { day: "Wed", value: 183 }, { day: "Thu", value: 188 }, { day: "Fri", value: 190 }]
-};
 const copy = {
-  es: { title: "Tu mercado, con claridad", subtitle: "Cotizaciones y análisis para tomar mejores decisiones.", portfolio: "Cartera", quotes: "Cotizaciones", analysis: "Análisis", settings: "Configuración", marketsOpen: "Mercados abiertos" },
-  en: { title: "Your market, made clear", subtitle: "Quotes and analysis for better decisions.", portfolio: "Portfolio", quotes: "Quotes", analysis: "Analysis", settings: "Settings", marketsOpen: "Markets open" }
+  es: { title: "Tu mercado, con claridad", subtitle: "Cotizaciones y análisis para tomar mejores decisiones.", portfolio: "Cartera", quotes: "Cotizaciones", analysis: "Análisis", settings: "Configuración", marketsOpen: "Mercados abiertos", days: ["Lun", "Mar", "Mié", "Jue", "Vie"] },
+  en: { title: "Your market, made clear", subtitle: "Quotes and analysis for better decisions.", portfolio: "Portfolio", quotes: "Quotes", analysis: "Analysis", settings: "Settings", marketsOpen: "Markets open", days: ["Mon", "Tue", "Wed", "Thu", "Fri"] }
 };
 
 export default function Dashboard() {
   const { locale, setLocale } = useLocale();
   const t = copy[locale];
-  const data = series[locale];
+  const data = t.days.map((day, index) => ({ day, value: [182, 185, 183, 188, 190][index] }));
   return <main className="mx-auto min-h-screen max-w-6xl p-6">
     <header className="flex items-center justify-between border-b border-slate-800 pb-6">
       <strong className="text-xl text-emerald-400">Critol Finance</strong>
