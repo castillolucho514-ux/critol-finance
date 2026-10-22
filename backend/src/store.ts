@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import type { Plan } from "./plans";
+import type { Plan } from "./plans.js";
 
 export type Role = "USER" | "ADMIN";
 export interface User { id: string; email: string; passwordHash: string; role: Role; plan: Plan; createdAt: Date }
