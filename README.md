@@ -1,4 +1,7 @@
 # critol-finance
+
+[![CI](https://github.com/castillolucho514-ux/critol-finance/actions/workflows/ci.yml/badge.svg)](https://github.com/castillolucho514-ux/critol-finance/actions/workflows/ci.yml)
+
 App de finanzas bursátiles bilingüe (ES/EN) colaborativa con análisis en tiempo real, cotizaciones, alertas inteligentes, modelo freemium y comunidad open-source bajo licencia MIT.
 
 ## CristoFinance – setup
@@ -10,11 +13,22 @@ Features: JWT auth, subscription plans (FREE/PRO/PREMIUM with daily chat limits)
 ### Run with Docker
 ```
 cp .env.example .env     # set JWT_SECRET (openssl rand -hex 32), POSTGRES_PASSWORD, etc.
+docker compose up --build
+```
+Or specify the file in `docker/`:
+```
 docker compose --env-file .env -f docker/docker-compose.yml up --build
 ```
 Frontend: http://localhost:3000 · API: http://localhost:4000. Migrations run on backend start.
 
 ### Local development
+From root workspace:
+```
+npm test        # executes backend test suite
+npm run build   # builds both backend and frontend
+```
+
+Or individually:
 ```
 cd backend && npm ci && npx prisma generate && npm test && npm run dev
 cd frontend && npm ci && npm run dev
